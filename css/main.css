@@ -1,0 +1,33 @@
+* {
+    font-family: arial, sans-serif;
+}
+body {
+    overflow: hidden;
+}
+.square {
+    width: 50px;
+    height: 50px;
+    background: #000;
+    color: #fff;
+    position: absolute;
+    top: -50px;
+    line-height: 50px;
+    text-align: center;
+    font-size: 26px;
+}
+#life {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    overflow: hidden;
+}
+.heart {
+    border: 1px solid #333;
+    margin: 0 2px;
+    width: 10px;
+    height: 10px;
+    float: left;
+}
+    .heart.full {
+        background-color: red;
+    }

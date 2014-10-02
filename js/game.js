@@ -6,8 +6,8 @@ Game = {
 
         this.currentLevel = 1;
         this.squareQuantity = 10;
-        this.tweenDuration = 6000;
-        this.creationInterval = 1000;
+        this.tweenDuration = 8000;
+        this.creationInterval = 1500;
         this.lives = 3;
         this.hearts = 3;
 

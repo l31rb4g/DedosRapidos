@@ -2,7 +2,7 @@ Square = new Class({
 
     initialize: function(){
         this.Fx = {
-            transition: Fx.Transitions.Linear,
+            transition: Fx.Transitions.Cubic.easeOut,
             duration: Game.tweenDuration
         };
         this.createElement();

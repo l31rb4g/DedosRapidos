@@ -5,9 +5,9 @@ Game = {
     initialize: function(){
 
         this.currentLevel = 1;
-        this.squareQuantity = 5;
-        this.tweenDuration = 5000;
-        this.creationInterval = 500;
+        this.squareQuantity = 10;
+        this.tweenDuration = 6000;
+        this.creationInterval = 1000;
         this.lives = 3;
         this.hearts = 3;
 

@@ -33,7 +33,9 @@ Message = new Class({
             this.el.morph({
                 'left': -window.getSize().x,
                 'opacity': 0
-            });
+            }).get('morph').chain(function(){
+                this.el.dispose();
+            }.bind(this));
         }.bind(this), 2000);
 
     }

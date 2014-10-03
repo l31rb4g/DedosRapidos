@@ -5,11 +5,13 @@ Game = {
     initialize: function(){
 
         this.currentLevel = 1;
-        this.squareQuantity = 10;
+        this.squareQuantity = 5;
         this.tweenDuration = 8000;
-        this.creationInterval = 1500;
+        this.creationInterval = 1000;
         this.lives = 3;
         this.hearts = 3;
+
+        this.brokenSquares = 0;
 
         this.addEvents();
 
@@ -27,23 +29,32 @@ Game = {
                 if (String(ev.key).match(/[0-9]/)){
                     var gotElement = false;
 
+                    var exit = false;
                     $$('body > .square').each(function(el){
-                        if (el.get('text') == ev.key){
-                            el.dispose();
-                            el.get('tween').cancel();
-                            gotElement = true;
+                        if (!exit){
+                            if (el.get('text') == ev.key){
+                                el.dispose();
+                                el.get('tween').cancel();
+                                gotElement = true;
+                                exit = true;
+                            }
                         }
                     }.bind(this));
 
-                    if (!gotElement){
+                    if (gotElement){
+                        this.brokenSquares++;
+                        this.checkVictory();
+                    } else {
                         Game.loseLife();
                     }
                 }
             }
-        });
+        }.bind(this));
     },
 
     start: function(){
+
+        this.brokenSquares = 0;
 
         for (var i=0; i<Game.squareQuantity; i++){
             setTimeout(function(){
@@ -71,6 +82,30 @@ Game = {
         alert('GAME OVER!');
         this.running = false;
         $$('.square').dispose();
+    },
+
+    checkVictory: function(){
+        console.log(Game.squareQuantity, this.brokenSquares)
+        if (Game.squareQuantity <= this.brokenSquares){
+            new Message('Level ' + this.currentLevel + ' concluído!');
+            this.nextLevel();
+        }
+    },
+
+    nextLevel: function(){
+        this.currentLevel++;
+        var newQuantity = (this.squareQuantity * 1.25).toInt();
+        this.squareQuantity = newQuantity;
+
+        var newDuration = (this.tweenDuration * 0.75).toInt();
+        this.tweenDuration = newDuration;
+
+        var newInterval = (this.creationInterval * 0.75).toInt();
+        this.creationInterval = newInterval;
+
+        setTimeout(function(){
+            this.start();
+        }.bind(this), 2000);
     }
 
 };

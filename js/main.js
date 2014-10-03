@@ -6,7 +6,7 @@ window.addEvent('domready', function(){
 
 Loader = new Class({
 
-    scripts: ['interface', 'game', 'square'],
+    scripts: ['interface', 'game', 'square', 'message'],
 
     ready: 0,
 

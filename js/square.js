@@ -2,7 +2,7 @@ Square = new Class({
 
     initialize: function(){
         this.Fx = {
-            transition: Fx.Transitions.Cubic.easeOut,
+            transition: Fx.Transitions.Linear,
             duration: Game.tweenDuration
         };
         this.createElement();
@@ -29,6 +29,8 @@ Square = new Class({
             this.el.dispose();
             if (Game.running){
                 Game.loseLife();
+                Game.brokenSquares++;
+                Game.checkVictory();
             }
         }.bind(this));
     }

@@ -85,7 +85,6 @@ Game = {
     },
 
     checkVictory: function(){
-        console.log(Game.squareQuantity, this.brokenSquares)
         if (Game.squareQuantity <= this.brokenSquares){
             new Message('Level ' + this.currentLevel + ' concluído!');
             this.nextLevel();

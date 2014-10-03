@@ -26,7 +26,7 @@ Game = {
 
             if (Game.running){
 
-                if (String(ev.key).match(/[0-9]/)){
+                if (String(ev.key).match(/^[0-9]$/)){
                     var gotElement = false;
 
                     var exit = false;

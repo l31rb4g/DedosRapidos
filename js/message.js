@@ -8,6 +8,7 @@ Message = new Class({
                 'position': 'absolute',
                 'width': '100%',
                 'height': 100,
+                'line-height': 100,
                 'font-size': 100,
                 'text-align': 'center',
                 'top': '50%',
@@ -25,6 +26,8 @@ Message = new Class({
             'left': 0,
             'opacity': 1
         });
+
+        window.foo = this.el;
 
         setTimeout(function(){
             this.el.set('morph', {

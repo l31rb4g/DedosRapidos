@@ -2,6 +2,7 @@ Interface = new Class({
 
     initialize: function(){
         this.playerLives();
+        this.createScore();
     },
 
     playerLives: function(){
@@ -20,6 +21,21 @@ Interface = new Class({
         }
 
         this.life.inject($$('body')[0]);
+    },
+
+    createScore: function(){
+        this.score = new Element('span', {'text': '0'});
+
+        new Element('div', {
+            'styles': {
+                'position': 'absolute',
+                'top': 30,
+                'left': 10
+            }
+        }).adopt(
+            new Element('span', {'text': 'score: '}),
+            this.score
+        ).inject($$('body')[0]);
     }
 
 });

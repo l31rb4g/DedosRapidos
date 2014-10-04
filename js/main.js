@@ -27,6 +27,6 @@ Loader = new Class({
 
     onComplete: function(){
         Game.initialize();
-        new Interface();
+        window.interface = new Interface();
     }
 });

@@ -27,8 +27,6 @@ Message = new Class({
             'opacity': 1
         });
 
-        window.foo = this.el;
-
         setTimeout(function(){
             this.el.set('morph', {
                 'transition': Fx.Transitions.Quint.easeOut

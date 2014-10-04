@@ -5,7 +5,6 @@ Game = {
     initialize: function(){
 
         this.currentLevel = 1;
-        this.squareQuantity = 5;
         this.tweenDuration = 8000;
         this.creationInterval = 1000;
         this.lives = 3;
@@ -17,12 +16,19 @@ Game = {
 
         this.start();
 
+        setInterval(function(){
+            this.nextLevel();
+        }.bind(this), 5000);
+
     },
 
     addEvents: function(){
         $$('body')[0].set('tween', {duration: 250});
 
         $$('body')[0].addEvent('keydown', function(ev){
+            if (ev.code == 19){
+                //alert('PAUSE');
+            }
 
             if (Game.running){
 
@@ -37,13 +43,13 @@ Game = {
                                 el.get('tween').cancel();
                                 gotElement = true;
                                 exit = true;
+                                this.addScore(this.currentLevel);
                             }
                         }
                     }.bind(this));
 
                     if (gotElement){
                         this.brokenSquares++;
-                        this.checkVictory();
                     } else {
                         Game.loseLife();
                     }
@@ -56,14 +62,27 @@ Game = {
 
         this.brokenSquares = 0;
 
-        for (var i=0; i<Game.squareQuantity; i++){
-            setTimeout(function(){
-                if (this.running){
-                    new Square();
-                }
-            }.bind(this), this.creationInterval * i)
-        }
+        this.mainInterval = setInterval(function(){
+            if (this.running){
+                new Square();
+            }
+        }.bind(this), this.creationInterval);
 
+    },
+
+    stop: function(){
+        clearInterval(this.mainInterval);
+    },
+
+    restart: function(){
+        this.stop();
+        this.start();
+    },
+
+    addScore: function(n){
+        var currentScore = this.score.get('text').toInt();
+        currentScore += n;
+        this.score.set('text', currentScore);
     },
 
     loseLife: function(){
@@ -82,29 +101,20 @@ Game = {
         alert('GAME OVER!');
         this.running = false;
         $$('.square').dispose();
-    },
-
-    checkVictory: function(){
-        if (Game.squareQuantity <= this.brokenSquares){
-            new Message('Level ' + this.currentLevel + ' concluído!');
-            this.nextLevel();
-        }
+        this.stop();
     },
 
     nextLevel: function(){
         this.currentLevel++;
-        var newQuantity = (this.squareQuantity * 1.25).toInt();
-        this.squareQuantity = newQuantity;
+        new Message('Level ' + this.currentLevel);
 
-        var newDuration = (this.tweenDuration * 0.75).toInt();
+        var newDuration = (this.tweenDuration * 0.8).toInt();
         this.tweenDuration = newDuration;
 
-        var newInterval = (this.creationInterval * 0.75).toInt();
+        var newInterval = (this.creationInterval * 0.8).toInt();
         this.creationInterval = newInterval;
 
-        setTimeout(function(){
-            this.start();
-        }.bind(this), 2000);
+        this.restart();
     }
 
 };

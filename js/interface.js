@@ -24,7 +24,7 @@ Interface = new Class({
     },
 
     createScore: function(){
-        this.score = new Element('span', {'text': '0'});
+        Game.score = new Element('span', {'text': '0'});
 
         new Element('div', {
             'styles': {
@@ -34,7 +34,7 @@ Interface = new Class({
             }
         }).adopt(
             new Element('span', {'text': 'score: '}),
-            this.score
+            Game.score
         ).inject($$('body')[0]);
     }
 

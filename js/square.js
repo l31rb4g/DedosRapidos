@@ -30,7 +30,6 @@ Square = new Class({
             if (Game.running){
                 Game.loseLife();
                 Game.brokenSquares++;
-                Game.checkVictory();
             }
         }.bind(this));
     }

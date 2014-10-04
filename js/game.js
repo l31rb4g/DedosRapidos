@@ -6,7 +6,7 @@ Game = {
 
         this.currentLevel = 1;
         this.tweenDuration = 8000;
-        this.creationInterval = 1000;
+        this.creationInterval = 2000;
         this.lives = 3;
         this.hearts = 3;
 
@@ -14,11 +14,17 @@ Game = {
 
         this.addEvents();
 
-        this.start();
-
         setInterval(function(){
-            this.nextLevel();
+            if (Game.running) {
+                this.nextLevel();
+            }
         }.bind(this), 5000);
+
+        new Message('Prepare-se!');
+
+        setTimeout(function(){
+            this.start();
+        }.bind(this), 2000)
 
     },
 
@@ -31,7 +37,6 @@ Game = {
             }
 
             if (Game.running){
-
                 if (String(ev.key).match(/^[0-9]$/)){
                     var gotElement = false;
 
@@ -67,6 +72,8 @@ Game = {
                 new Square();
             }
         }.bind(this), this.creationInterval);
+
+        new Square();
 
     },
 
@@ -106,12 +113,11 @@ Game = {
 
     nextLevel: function(){
         this.currentLevel++;
-        new Message('Level ' + this.currentLevel);
 
-        var newDuration = (this.tweenDuration * 0.8).toInt();
+        var newDuration = (this.tweenDuration * 0.9).toInt();
         this.tweenDuration = newDuration;
 
-        var newInterval = (this.creationInterval * 0.8).toInt();
+        var newInterval = (this.creationInterval * 0.9).toInt();
         this.creationInterval = newInterval;
 
         this.restart();

@@ -13,7 +13,8 @@ body {
     top: -50px;
     line-height: 50px;
     text-align: center;
-    font-size: 26px;
+    font-size: 42px;
+    font-weight: bold;
 }
 #life {
     position: absolute;

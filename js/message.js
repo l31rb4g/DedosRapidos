@@ -1,7 +1,13 @@
 Message = new Class({
 
-    initialize: function(message){
+    Implements: Options,
 
+    options: {
+        close: true
+    },
+
+    initialize: function(message, options){
+        this.setOptions(options);
         this.el = new Element('div', {
             'text': message,
             'styles': {
@@ -27,17 +33,19 @@ Message = new Class({
             'opacity': 1
         });
 
-        setTimeout(function(){
-            this.el.set('morph', {
-                'transition': Fx.Transitions.Quint.easeOut
-            });
-            this.el.morph({
-                'left': -window.getSize().x,
-                'opacity': 0
-            }).get('morph').chain(function(){
-                this.el.dispose();
-            }.bind(this));
-        }.bind(this), 2000);
+        if (this.options.close) {
+            setTimeout(function () {
+                this.el.set('morph', {
+                    'transition': Fx.Transitions.Quint.easeOut
+                });
+                this.el.morph({
+                    'left': -window.getSize().x,
+                    'opacity': 0
+                }).get('morph').chain(function () {
+                    this.el.dispose();
+                }.bind(this));
+            }.bind(this), 2000);
+        }
 
     }
 

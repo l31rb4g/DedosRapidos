@@ -22,6 +22,8 @@ Square = new Class({
             'tween': this.Fx
         });
 
+        this.el.store('instance', this);
+
         var endTop = window.getSize().y;
 
         this.el.inject($$('body')[0]);
@@ -31,6 +33,26 @@ Square = new Class({
                 Game.loseLife();
                 Game.brokenSquares++;
             }
+        }.bind(this));
+    },
+
+    explode: function(){
+        this.el.get('tween').cancel();
+        var _top = this.el.getStyle('top').toInt() - 75;
+        var _left = this.el.getStyle('left').toInt() - 75;
+        this.el.set('morph', {
+            'duration': 100,
+            'transition': Fx.Transitions.Linear
+        });
+        this.el.morph({
+            'width': 200,
+            'height': 200,
+            'top': _top,
+            'left': _left,
+            'line-height': 200,
+            'opacity': 0
+        }).get('morph').chain(function(){
+            this.el.dispose();
         }.bind(this));
     }
 

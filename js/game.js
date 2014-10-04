@@ -44,8 +44,7 @@ Game = {
                     $$('body > .square').each(function(el){
                         if (!exit){
                             if (el.get('text') == ev.key){
-                                el.dispose();
-                                el.get('tween').cancel();
+                                el.retrieve('instance').explode();
                                 gotElement = true;
                                 exit = true;
                                 this.addScore(this.currentLevel);
@@ -93,22 +92,24 @@ Game = {
     },
 
     loseLife: function(){
-        if (Game.hearts == 0){
-            Game.gameOver();
-        } else {
-            Game.hearts--;
-            $$('body')[0].setStyle('background-color', '#f00').tween('background-color', '#fff');
-            var lastFullHeart = $$('#life .heart.full');
-            lastFullHeart[lastFullHeart.length - 1].removeClass('full');
+        if (Game.running) {
+            if (Game.hearts == 0) {
+                Game.gameOver();
+            } else {
+                Game.hearts--;
+                $$('body')[0].setStyle('background-color', '#f00').tween('background-color', '#fff');
+                var lastFullHeart = $$('#life .heart.full');
+                lastFullHeart[lastFullHeart.length - 1].removeClass('full');
+            }
         }
-
     },
 
     gameOver: function(){
-        alert('GAME OVER!');
         this.running = false;
-        $$('.square').dispose();
         this.stop();
+        this.gameOverMessage = new Message('GAME OVER', {
+            close: false
+        });
     },
 
     nextLevel: function(){

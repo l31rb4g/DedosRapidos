@@ -20,22 +20,18 @@ Interface = new Class({
             el.inject(this.life);
         }
 
-        this.life.inject($$('body')[0]);
+        this.life.inject($$('.container')[0]);
     },
 
     createScore: function(){
         Game.score = new Element('span', {'text': '0'});
 
         new Element('div', {
-            'styles': {
-                'position': 'absolute',
-                'top': 30,
-                'left': 10
-            }
+            'class': 'score'
         }).adopt(
-            new Element('span', {'text': 'score: '}),
+            new Element('span', {'text': 'Score: '}),
             Game.score
-        ).inject($$('body')[0]);
+        ).inject($$('.container')[0]);
     }
 
 });

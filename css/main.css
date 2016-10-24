@@ -54,15 +54,19 @@ body {
     height: 216px;
     position: absolute;
     bottom: 65px;
-    left: 0;
+    left: 80px;
     background: url("../images/placa.png");
 }
 
 .container {
-    width: 150px;
+    width: 170px;
     height: 80px;
     position: absolute;
     left: 50%;
     top: 50%;
     margin: -70px 0 0 -75px;
+}
+
+.message {
+    background: url("../images/nuvem.png") no-repeat center center;
 }

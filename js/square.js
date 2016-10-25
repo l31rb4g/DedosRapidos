@@ -1,9 +1,15 @@
 Square = new Class({
 
-    initialize: function(){
+    initialize: function(game){
+        this.game = game;
+        d = Game.tweenDuration;
+        d += Math.random() * (d * 0.2);
         this.Fx = {
             transition: Fx.Transitions.Linear,
-            duration: Game.tweenDuration
+            duration: d,
+            onComplete: function(){
+                this.game.removeSquare(this);
+            }.bind(this)
         };
         this.createElement();
     },
@@ -17,6 +23,7 @@ Square = new Class({
             'class': 'square',
             'text': num,
             'styles': {
+                'top': -100,
                 'left': _left
             },
             'tween': this.Fx
@@ -54,6 +61,7 @@ Square = new Class({
         }).get('morph').chain(function(){
             this.el.dispose();
         }.bind(this));
+        this.game.removeSquare(this);
     }
 
 });

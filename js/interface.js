@@ -17,7 +17,7 @@ Interface = new Class({
             'id': 'life'
         });
 
-        for (var i=0; i<Game.lives; i++){
+        for (var i=0; i<Game.hearts; i++){
             var el = new Element('div', {
                 'class': 'heart'
             });

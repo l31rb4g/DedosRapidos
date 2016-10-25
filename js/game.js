@@ -114,7 +114,7 @@ Game = {
         setTimeout(function(){
             new lightBox();
             $$('.pontuacao span')[0].set('text', $$('.sc')[0].get('text'));
-        }, 2000);
+        }, 0);
 
     },
 

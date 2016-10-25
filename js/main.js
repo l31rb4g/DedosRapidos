@@ -62,7 +62,12 @@ lightBox = new Class({
                 new Element('input', {
                     'id': 'submit',
                     'type': 'button',
-                    'value': 'Send'
+                    'value': 'Send',
+                    'events': {
+                        click: function(){
+                            location.reload();
+                        }.bind(this)
+                    }
                 }),
 
                 new Element('p', {

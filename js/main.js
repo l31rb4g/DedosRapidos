@@ -65,7 +65,11 @@ lightBox = new Class({
                     'value': 'Send',
                     'events': {
                         click: function(){
-                            location.reload();
+                            if($("nickName").get('value').trim() != ""){
+                                location.reload();
+                            }else{
+                                $("nickName").addClass('error');
+                            }
                         }.bind(this)
                     }
                 }),

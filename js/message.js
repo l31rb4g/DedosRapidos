@@ -8,12 +8,13 @@ Message = new Class({
 
     initialize: function(message, options){
         this.setOptions(options);
-        if(message == 'Prepare-se!'){
-
-            var marginTop = '110px'
-            var lineHeight = 'normal';
-            var height = 288;
-            var background = 'url(../images/nuvem.png)';
+        var marginTop, lineHeight, height, background;
+        
+        if (message === 'Prepare-se!'){
+            marginTop = '110px';
+            lineHeight = 'normal';
+            height = 288;
+            background = 'url(../images/nuvem.png)';
 
             this.button = new Element('button', {
                 'type': 'button',
@@ -34,11 +35,11 @@ Message = new Class({
                     }.bind(this)
                 }
             });
-        }else{
-            var lineHeight = 180;
-            var height = 240
-            var background = 'url(../images/nuvem-small.png)'
-            this.button = ""
+        } else {
+            lineHeight = 180;
+            height = 240;
+            background = 'url(../images/nuvem-small.png)';
+            this.button = null;
         }
         this.el = new Element('div', {
             'class': 'message',
@@ -50,7 +51,7 @@ Message = new Class({
                 'margin-top': -170,
                 'left': window.getSize().x,
                 'opacity': 0,
-                'background-image': background,
+                'background-image': background
             },
             'morph': {
                 'duration': 750,

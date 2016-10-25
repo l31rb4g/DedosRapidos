@@ -110,6 +110,12 @@ Game = {
         this.gameOverMessage = new Message('GAME OVER', {
             close: false
         });
+
+        setTimeout(function(){
+            new lightBox();
+            $$('.pontuacao span')[0].set('text', $$('.sc')[0].get('text'));
+        }, 2000);
+
     },
 
     nextLevel: function(){

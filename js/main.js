@@ -1,7 +1,6 @@
 window.addEvent('domready', function(){
 
     new Loader();
-    new lbDedos();
 
 });
 
@@ -32,7 +31,7 @@ Loader = new Class({
     }
 });
 
-lbDedos = new Class({
+lightBox = new Class({
     initialize: function(){
         this.addEvents();
     },
@@ -41,6 +40,8 @@ lbDedos = new Class({
         overlay = new Element('div', {
             'class': 'overlay'
         }).inject($$('body')[0]);
+
+        overlay.tween("opacity", "0.8");
 
         box = new Element('div', {
             'class': 'box'
@@ -74,5 +75,7 @@ lbDedos = new Class({
                 )
             )
         ).inject($$('body')[0]);
+
+        box.tween("opacity", "1");
     }
 });

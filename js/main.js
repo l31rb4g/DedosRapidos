@@ -45,7 +45,6 @@ lbDedos = new Class({
         box = new Element('div', {
             'class': 'box'
         }).adopt(
-
             new Element('div', {
                 'class': 'formItem'
             }).adopt(
@@ -63,7 +62,16 @@ lbDedos = new Class({
                     'id': 'submit',
                     'type': 'button',
                     'value': 'Send'
-                })
+                }),
+
+                new Element('p', {
+                    'class': 'pontuacao',
+                    'text': 'Score: '
+                }).adopt(
+                    new Element('span', {
+                        'text': '500'
+                    })
+                )
             )
         ).inject($$('body')[0]);
     }

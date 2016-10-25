@@ -3,6 +3,13 @@ Interface = new Class({
     initialize: function(){
         this.playerLives();
         this.createScore();
+        this.createScenario();
+    },
+    
+    createScenario: function(){
+        new Element('div', {'class': 'board'}).adopt(
+            new Element('div', {'class': 'container'})
+        ).inject($$('body'[0]));
     },
 
     playerLives: function(){

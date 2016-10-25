@@ -97,7 +97,7 @@ Game = {
                 Game.gameOver();
             } else {
                 Game.hearts--;
-                $$('body')[0].setStyle('background-color', '#f00').tween('background-color', '#fff');
+                $$('body')[0].setStyle('opacity', '0.4').tween('opacity', '1');
                 var lastFullHeart = $$('#life .heart.full');
                 lastFullHeart[lastFullHeart.length - 1].removeClass('full');
             }

@@ -68,7 +68,23 @@ body {
 }
 
 .message {
-    background: url("../images/nuvem.png") no-repeat center center;
+    background: no-repeat center center;
+}
+
+.start {
+    width: 150px;
+    margin: 15px auto 0 auto;
+    display: block;
+    padding: 5px 15px;
+    background: #5fb0e5;
+    border: 1px solid #5fb0e5;
+    border-radius: 6px;
+    color: #ffffff;
+    font-weight: bold;
+    font-family: 'Open Sans';
+    cursor: pointer;
+    outline: none;
+    font-size: 20px;
 }
 
 /*box*/

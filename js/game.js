@@ -22,10 +22,6 @@ Game = {
 
         new Message('Prepare-se!');
 
-        setTimeout(function(){
-            this.start();
-        }.bind(this), 2000)
-
     },
 
     addEvents: function(){
@@ -127,7 +123,7 @@ Game = {
         var newInterval = (this.creationInterval * 0.9).toInt();
         this.creationInterval = newInterval;
 
-        this.restart();
+        //this.restart();
     }
 
 };

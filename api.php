@@ -3,8 +3,8 @@ ini_set('display_errors', 'on');
 error_reporting(E_ALL ^ E_STRICT);
 $db = new PDO('mysql:host=localhost;dbname=dedosrapidos', 'dedosrapidos', ';2~(@#C#&*V%#&*(Y');
 
-if (isset($_POST['action'])){
-    $action = $_POST['action'];
+if (isset($_GET['action'])){
+    $action = $_GET['action'];
     
     if ($action == 'top15'){
         $q = $db->prepare("SELECT * FROM top15 ORDER BY score DESC limit 15");

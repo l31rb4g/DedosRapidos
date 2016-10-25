@@ -1,8 +1,15 @@
 Interface = new Class({
 
     initialize: function(){
+        this.createScenario();
         this.playerLives();
         this.createScore();
+    },
+    
+    createScenario: function(){
+        new Element('div', {'class': 'board'}).adopt(
+            new Element('div', {'class': 'container'})
+        ).inject($$('body')[0]);
     },
 
     playerLives: function(){

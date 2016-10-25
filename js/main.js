@@ -45,9 +45,26 @@ lbDedos = new Class({
         box = new Element('div', {
             'class': 'box'
         }).adopt(
-            new Element('img', {
-                'src': ''
-            })
+
+            new Element('div', {
+                'class': 'formItem'
+            }).adopt(
+                new Element('label', {
+                    'text': 'Nickname: '
+                }),
+
+                new Element('input', {
+                    'name': 'nickName',
+                    'id': 'nickName',
+                    'type': 'text'
+                }),
+
+                new Element('input', {
+                    'id': 'submit',
+                    'type': 'button',
+                    'value': 'Send'
+                })
+            )
         ).inject($$('body')[0]);
     }
 });

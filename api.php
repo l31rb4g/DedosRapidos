@@ -22,6 +22,7 @@ if (isset($_GET['action'])){
         $score = strip_tags(intval($_POST['score']));
         $conn = $db->prepare("INSERT INTO top15 VALUES (NULL, '$name', $score, NULL)");
         $conn->execute();
+        print_r($conn->errorInfo());
     }
         
 }

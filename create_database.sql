@@ -5,7 +5,7 @@ USE `dedosrapidos`;
 
 DROP USER `dedosrapidos`@`localhost`;
 CREATE USER `dedosrapidos`@`localhost` IDENTIFIED BY ';2~(@#C#&*V%#&*(Y';
-GRANT ALL ON `dedosrapidos.*` TO `dedosrapidos`@`localhost`;
+GRANT ALL ON `dedosrapidos`.* TO `dedosrapidos`@`localhost`;
 FLUSH privileges;
 
 

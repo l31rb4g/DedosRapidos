@@ -130,6 +130,11 @@ Game = {
         this.squares.each(function(el){
             el.el.get('tween').stop();
         });
+        setTimeout(function(){
+            this.squares.each(function(el){
+                el.el.tween('opacity', 0);
+            });
+        }.bind(this), 1000);
 
         setTimeout(function(){
             new LightBox();

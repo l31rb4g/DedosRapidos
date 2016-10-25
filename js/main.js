@@ -60,7 +60,16 @@ lightBox = new Class({
                 new Element('input', {
                     'id': 'submit',
                     'type': 'button',
-                    'value': 'Send'
+                    'value': 'Send',
+                    'events': {
+                        click: function(){
+                            if($("nickName").get('value').trim() != ""){
+                                location.reload();
+                            }else{
+                                $("nickName").addClass('error');
+                            }
+                        }.bind(this)
+                    }
                 }),
 
                 new Element('p', {

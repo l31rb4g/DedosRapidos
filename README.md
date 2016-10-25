@@ -1,8 +1,9 @@
 DedosRapidos
 --------------
-Pequeno jogo em Javascript focado na velocidade de digitação de números
+Pequeno jogo em Javascript focado na velocidade de digitação.
 
 
 Demo
 --------------
-http://dedosrapidos.eztech.pro
+http://dedosrapidos.paladino.pro
+

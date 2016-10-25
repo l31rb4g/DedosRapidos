@@ -23,21 +23,14 @@ LightBox = new Class({
                 new Element('input', {
                     'name': 'nickName',
                     'id': 'nickName',
-                    'type': 'text'
+                    'type': 'text',
+                    'autofocus': 'autofocus'
                 }),
 
                 new Element('input', {
                     'id': 'submit',
                     'type': 'submit',
-                    'value': 'Send',
-                    'events': {
-                        click: function(){
-                            $("nickName").removeClass('error');
-                            if (!$("nickName").get('value').trim()){
-                                $("nickName").addClass('error');
-                            }
-                        }.bind(this)
-                    }
+                    'value': 'Send'
                 }),
 
                 new Element('p', {

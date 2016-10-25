@@ -185,3 +185,12 @@ body {
     cursor: pointer;
     outline: none;
 }
+
+
+#by {
+    font-size: 8px;
+    position: absolute;
+    bottom: 114px;
+    left: 108px;
+    transform: rotate(11deg);
+}

@@ -10,6 +10,10 @@ Interface = new Class({
         new Element('div', {'class': 'board'}).adopt(
             new Element('div', {'class': 'container'})
         ).inject($$('body')[0]);
+        new Element('div', {
+            'id': 'by',
+            'text': 'by l31rb4g and RojuebS'
+        }).inject($$('body')[0]);
     },
 
     playerLives: function(){

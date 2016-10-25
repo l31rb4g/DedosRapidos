@@ -2,7 +2,7 @@ Square = new Class({
 
     initialize: function(game){
         this.game = game;
-        d = Game.tweenDuration;
+        d = this.game.tweenDuration;
         d += Math.random() * (d * 0.2);
         this.Fx = {
             transition: Fx.Transitions.Linear,
@@ -36,9 +36,9 @@ Square = new Class({
         this.el.inject($$('body')[0]);
         this.el.tween('top', endTop).get('tween').chain(function(){
             this.el.dispose();
-            if (Game.running){
-                Game.loseLife();
-                Game.brokenSquares++;
+            if (this.game.running){
+                this.game.loseLife();
+                this.game.brokenSquares++;
             }
         }.bind(this));
     },

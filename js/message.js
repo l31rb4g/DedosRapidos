@@ -9,18 +9,21 @@ Message = new Class({
     initialize: function(message, options){
         this.setOptions(options);
         this.el = new Element('div', {
+            'class': 'message',
             'text': message,
             'styles': {
                 'position': 'absolute',
                 'width': '100%',
-                'height': 100,
-                'line-height': 100,
-                'font-size': 100,
+                'height': 240,
+                'line-height': 280,
+                'font-size': '50px',
                 'text-align': 'center',
                 'top': '50%',
-                'margin-top': -50,
+                'margin-top': -170,
                 'left': window.getSize().x,
-                'opacity': 0
+                'opacity': 0,
+                'color': '#5fb0e5',
+                'font-weight': 'bold'
             },
             'morph': {
                 'duration': 750,

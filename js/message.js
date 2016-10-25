@@ -77,7 +77,6 @@ Message = new Class({
             'left': 0,
             'opacity': 1
         });
-
     }
 
 });

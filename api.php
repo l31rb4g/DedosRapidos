@@ -2,6 +2,7 @@
 ini_set('display_errors', 'on');
 error_reporting(E_ALL ^ E_STRICT);
 $db = new PDO('mysql:host=localhost;dbname=dedosrapidos', 'dedosrapidos', ';2~(@#C#&*V%#&*(Y');
+$db->exec('SET CHARACTER SET UTF8');
 
 if (isset($_GET['action'])){
     $action = $_GET['action'];

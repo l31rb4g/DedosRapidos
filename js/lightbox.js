@@ -4,46 +4,73 @@ LightBox = new Class({
     },
 
     addEvents: function(){
-        overlay = new Element('div', {
+        this.overlay = new Element('div', {
             'class': 'overlay'
         }).inject($$('body')[0]);
 
-        overlay.tween("opacity", "0.8");
+        this.overlay.tween("opacity", "0.8");
 
-        box = new Element('div', {
+        this.box = new Element('div', {
             'class': 'box'
         }).adopt(
-            new Element('div', {
-                'class': 'formItem'
+            new Element('form', {
+                'method': 'post',
+                'events': {
+                    'submit': function(ev){
+                        ev.stop();
+                        var nickname = $('nickName').get('value').trim();
+                        if (!nickname){
+                            $('nickName').addClass('error');
+                        } else {
+                            new Request({
+                                'url': '/api.php?action=score',
+                                'data': {
+                                    'nickname': nickname,
+                                    'score': Game.score.get('text').toInt()
+                                }
+                            }).send();
+                            this.close();
+                        }
+                    }.bind(this)
+                }
             }).adopt(
-                new Element('label', {
-                    'text': 'Nickname: '
-                }),
-
-                new Element('input', {
-                    'name': 'nickName',
-                    'id': 'nickName',
-                    'type': 'text',
-                    'autofocus': 'autofocus'
-                }),
-
-                new Element('input', {
-                    'id': 'submit',
-                    'type': 'submit',
-                    'value': 'Send'
-                }),
-
-                new Element('p', {
-                    'class': 'pontuacao',
-                    'text': 'Score: '
+                new Element('div', {
+                    'class': 'formItem'
                 }).adopt(
-                    new Element('span', {
-                        'text': '500'
-                    })
+                    new Element('label', {
+                        'text': 'Nickname: '
+                    }),
+
+                    new Element('input', {
+                        'name': 'nickName',
+                        'id': 'nickName',
+                        'type': 'text',
+                        'autofocus': 'autofocus'
+                    }),
+
+                    new Element('input', {
+                        'id': 'submit',
+                        'type': 'submit',
+                        'value': 'Send'
+                    }),
+
+                    new Element('p', {
+                        'class': 'pontuacao',
+                        'text': 'Score: '
+                    }).adopt(
+                        new Element('span', {
+                            'text': '500'
+                        })
+                    )
                 )
             )
         ).inject($$('body')[0]);
 
-        box.tween("opacity", "1");
+        this.box.tween("opacity", "1");
+    },
+    
+    close: function(){
+        this.overlay.dispose();
+        this.box.dispose();
     }
 });

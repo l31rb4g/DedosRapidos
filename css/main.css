@@ -70,3 +70,28 @@ body {
 .message {
     background: url("../images/nuvem.png") no-repeat center center;
 }
+
+/*box*/
+
+.overlay{
+    width: 100%;
+    height: 100%;
+    background: #000000;
+    position: fixed;
+    z-index: 1;
+    top:0;
+    left:0;
+    opacity: 0.8;
+}
+
+.box {
+    width: 400px;
+    height: 120px;
+    position: fixed;
+    border: 1px solid red;
+    left: 50%;
+    top: 50%;
+    margin: -60px 0 0 -200px;
+    z-index: 12000;
+    background: #ffffff;
+}

@@ -1,6 +1,7 @@
 window.addEvent('domready', function(){
 
     new Loader();
+    new lbDedos();
 
 });
 
@@ -28,5 +29,25 @@ Loader = new Class({
     onComplete: function(){
         Game.initialize();
         window.interface = new Interface();
+    }
+});
+
+lbDedos = new Class({
+    initialize: function(){
+        this.addEvents();
+    },
+
+    addEvents: function(){
+        overlay = new Element('div', {
+            'class': 'overlay'
+        }).inject($$('body')[0]);
+
+        box = new Element('div', {
+            'class': 'box'
+        }).adopt(
+            new Element('img', {
+                'src': ''
+            })
+        ).inject($$('body')[0]);
     }
 });

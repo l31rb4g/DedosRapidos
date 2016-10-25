@@ -5,9 +5,9 @@ Game = {
     initialize: function(){
 
         this.currentLevel = 1;
-        this.tweenDuration = 8000;
-        this.creationInterval = 2000;
-        this.hearts = 300;
+        this.tweenDuration = 6000;
+        this.creationInterval = 800;
+        this.hearts = 3;
 
         this.brokenSquares = 0;
         this.squares = [];
@@ -71,6 +71,7 @@ Game = {
     start: function(){
         this.brokenSquares = 0;
         this.startTimer();
+        this.squares.push(new Square(this));
     },
     
     pause: function(){
@@ -103,7 +104,7 @@ Game = {
         currentScore += n;
         this.score.set('text', currentScore);
         
-        if (currentScore % 3 == 0){
+        if (currentScore % 5 == 0){
             this.nextLevel();
         }
     },
@@ -118,7 +119,7 @@ Game = {
                 Game.gameOver();
             } else {
                 Game.hearts--;
-                $$('body')[0].setStyle('background-color', '#f00').tween('background-color', '#fff');
+                $$('body')[0].setStyle('opacity', '0.4').tween('opacity', '1');
                 var lastFullHeart = $$('#life .heart.full');
                 lastFullHeart[lastFullHeart.length - 1].removeClass('full');
             }
@@ -131,24 +132,25 @@ Game = {
         this.gameOverMessage = new Message('GAME OVER', {
             close: false
         });
+
+        setTimeout(function(){
+            new lightBox();
+            $$('.pontuacao span')[0].set('text', $$('.sc')[0].get('text'));
+        }, 2000);
+
     },
 
     nextLevel: function(){
+        var t = this.tweenDuration * 0.95;
+        if (t < 50) t = 50;
+        this.tweenDuration = t;
+        
+        t = this.creationInterval * 0.95;
+        if (t < 1000) t = 1000;
+        this.creationInterval = t;
+        
         this.currentLevel++;
-
-        var newDuration = (this.tweenDuration * 0.9).toInt();
-        this.tweenDuration = newDuration;
-
-        var newInterval = (this.creationInterval * 0.9).toInt();
-        this.creationInterval = newInterval;
-
         this.restart();
     }
 
 };
-
-window.c = 1;
-function cubic(){
-    window.c -= (c * 2);
-    return c;
-}

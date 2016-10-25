@@ -81,24 +81,25 @@ body {
     z-index: 1;
     top:0;
     left:0;
-    opacity: 0.8;
+    opacity: 0;
 }
 
 .formItem {
-    margin: 20px 0 0 20px;
+    margin: 25px 0 0 20px;
 }
 
 .box {
     width: 370px;
-    height: 110px;
+    height: 116px;
     position: fixed;
     border: 1px solid #cccccc;
     left: 50%;
     top: 50%;
-    margin: -55px 0 0 -235px;
+    margin: -58px 0 0 -235px;
     z-index: 12000;
     background: #ffffff;
     border-radius: 6px;
+    opacity: 0;
 }
 
 .box label {

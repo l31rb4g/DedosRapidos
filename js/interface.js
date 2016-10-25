@@ -31,7 +31,7 @@ Interface = new Class({
     },
 
     createScore: function(){
-        Game.score = new Element('span', {'text': '0'});
+        Game.score = new Element('span', { 'class': 'sc', 'text': '0'});
 
         new Element('div', {
             'class': 'score'

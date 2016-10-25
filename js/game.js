@@ -104,7 +104,7 @@ Game = {
         currentScore += n;
         this.score.set('text', currentScore);
         
-        if (currentScore % 5 == 0){
+        if (currentScore % 4 == 0){
             this.nextLevel();
         }
     },
@@ -132,9 +132,12 @@ Game = {
         this.gameOverMessage = new Message('GAME OVER', {
             close: false
         });
+        this.squares.each(function(el){
+            el.el.get('tween').stop();
+        });
 
         setTimeout(function(){
-            new lightBox();
+            new LightBox();
             $$('.pontuacao span')[0].set('text', $$('.sc')[0].get('text'));
         }, 2000);
 

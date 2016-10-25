@@ -3,8 +3,8 @@ ini_set('display_errors', 'on');
 error_reporting(E_ALL ^ E_STRICT);
 $db = new PDO('mysql:host=localhost;dbname=dedosrapidos', 'dedosrapidos', ';2~(@#C#&*V%#&*(Y');
 
-if (isset($_GET['action'])){
-    $action = $_GET['action'];
+if (isset($_POST['action'])){
+    $action = $_POST['action'];
     
     if ($action == 'top15'){
         $q = $db->prepare("SELECT * FROM top15 ORDER BY score DESC limit 15");
@@ -17,8 +17,8 @@ if (isset($_GET['action'])){
     }
     
     if ($action == 'score'){
-        $name = 'l31rb4g';
-        $score = 100;
+        $name = strip_tags(trim($_POST['nickname']));
+        $score = strip_tags(intval($_POST['score']));
         $conn = $db->prepare("INSERT INTO top15 VALUES (NULL, '$name', $score, NULL)");
         $conn->execute();
     }

@@ -1,8 +1,6 @@
 window.addEvent('domready', function(){
-
     new Loader();
-    new lbDedos();
-
+    //new lbDedos();
 });
 
 Loader = new Class({

@@ -7,24 +7,18 @@ Game = {
         this.currentLevel = 1;
         this.tweenDuration = 8000;
         this.creationInterval = 2000;
-        this.lives = 3;
-        this.hearts = 3;
+        this.hearts = 300;
 
         this.brokenSquares = 0;
+        this.squares = [];
 
         this.addEvents();
-
-        setInterval(function(){
-            if (Game.running) {
-                this.nextLevel();
-            }
-        }.bind(this), 5000);
 
         new Message('Prepare-se!');
 
         setTimeout(function(){
             this.start();
-        }.bind(this), 2000)
+        }.bind(this), 2000);
 
     },
 
@@ -33,7 +27,11 @@ Game = {
 
         $$('body')[0].addEvent('keydown', function(ev){
             if (ev.code == 19){
-                //alert('PAUSE');
+                if (this.paused){
+                    this.resume();
+                } else {
+                    this.pause();
+                }
             }
 
             if (Game.running){
@@ -61,19 +59,34 @@ Game = {
             }
         }.bind(this));
     },
-
-    start: function(){
-
-        this.brokenSquares = 0;
-
+    
+    startTimer: function(){
         this.mainInterval = setInterval(function(){
             if (this.running){
-                new Square();
+                this.squares.push(new Square(this));
             }
         }.bind(this), this.creationInterval);
+    },
 
-        new Square();
-
+    start: function(){
+        this.brokenSquares = 0;
+        this.startTimer();
+    },
+    
+    pause: function(){
+        this.paused = true;
+        clearInterval(this.mainInterval);
+        this.squares.each(function(el){
+            el.el.get('tween').pause();
+        });
+    },
+    
+    resume: function(){
+        this.paused = false;
+        this.startTimer();
+        this.squares.each(function(el){
+            el.el.get('tween').resume();
+        });
     },
 
     stop: function(){
@@ -89,6 +102,14 @@ Game = {
         var currentScore = this.score.get('text').toInt();
         currentScore += n;
         this.score.set('text', currentScore);
+        
+        if (currentScore % 3 == 0){
+            this.nextLevel();
+        }
+    },
+    
+    removeSquare: function(square){
+        this.squares.splice(this.squares.indexOf(square), 1);
     },
 
     loseLife: function(){
@@ -125,3 +146,9 @@ Game = {
     }
 
 };
+
+window.c = 1;
+function cubic(){
+    window.c -= (c * 2);
+    return c;
+}

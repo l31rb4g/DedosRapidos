@@ -7,7 +7,7 @@ from selenium.webdriver.common.action_chains import ActionChains
 
 class DedosRapidosTests(unittest.TestCase):
 
-    url = 'http://localhost:9001'
+    url = 'http://localhost:9000'
 
     def setUp(self):
         self.browser = webdriver.Chrome()

@@ -7,7 +7,7 @@ Game = {
         this.currentLevel = 1;
         this.tweenDuration = 6000;
         this.creationInterval = 800;
-        this.hearts = 3;
+        this.hearts = 300;
 
         this.brokenSquares = 0;
         this.squares = [];
@@ -58,7 +58,17 @@ Game = {
     startTimer: function(){
         this.mainInterval = setInterval(function(){
             if (this.running){
-                this.squares.push(new Square(this));
+                var qtd = 1;
+                var r = parseInt(Math.random() * 100);
+                if (r < 10){
+                    qtd = 2;
+                    if (r == 0){
+                        qtd = 3;
+                    }
+                }
+                for (var i=0; i<qtd; i++){
+                    this.squares.push(new Square(this));
+                }
             }
         }.bind(this), this.creationInterval);
     },
@@ -144,23 +154,23 @@ Game = {
     },
 
     nextLevel: function(){
-        var t = this.tweenDuration * 0.95;
-        if (t < 50) t = 50;
-        this.tweenDuration = t;
-        
-        t = this.creationInterval * 0.95;
-        if (t < 1000) t = 1000;
-        this.creationInterval = t;
-        
         this.currentLevel++;
 
-        var newDuration = (this.tweenDuration * 0.9).toInt();
+        var newDuration = (this.tweenDuration * 0.999).toInt();
         this.tweenDuration = newDuration;
 
         var newInterval = (this.creationInterval * 0.9).toInt();
         this.creationInterval = newInterval;
-
-        //this.restart();
+    },
+    
+    ninja: function(){
+        setInterval(function(){
+            $$('.square').each(function(el, n){
+                setTimeout(function(){
+                    $$('body')[0].fireEvent('keydown', {'key': el.get('text')});
+                }, 600 * (n + 0.8));
+            });
+        });
     }
 
 };

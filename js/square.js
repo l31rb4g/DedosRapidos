@@ -15,7 +15,7 @@ Square = new Class({
     },
 
     createElement: function(){
-        var size = {x:50, y:50};
+        var size = {x:90, y:150};
         var _left = (Math.random() * (window.getSize().x - size.x)).toInt();
         var num = String((Math.random() * 10).toInt());
 
@@ -23,7 +23,10 @@ Square = new Class({
             'class': 'square',
             'text': num,
             'styles': {
-                'top': -100,
+                'width': 90,
+                'height': 150,
+                'line-height': 170,
+                'top': -size.y,
                 'left': _left
             },
             'tween': this.Fx
@@ -45,23 +48,14 @@ Square = new Class({
 
     explode: function(){
         this.el.get('tween').cancel();
-        var _top = this.el.getStyle('top').toInt() - 75;
-        var _left = this.el.getStyle('left').toInt() - 75;
-        this.el.set('morph', {
-            'duration': 100,
-            'transition': Fx.Transitions.Linear
-        });
-        this.el.morph({
-            'width': 200,
-            'height': 200,
-            'top': _top,
-            'left': _left,
-            'line-height': 200,
-            'opacity': 0
-        }).get('morph').chain(function(){
+        var t = String(new Date().getTime());
+        this.el.set('text', '').adopt(new Element('img', {
+            'src': '/images/bomb-exploding.gif?t=' + t
+        })).setStyle('background', 'none');
+        setTimeout(function(){
             this.el.dispose();
-        }.bind(this));
-        this.game.removeSquare(this);
+            this.game.removeSquare(this);
+        }.bind(this), 500);
     }
 
 });

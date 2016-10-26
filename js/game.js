@@ -7,7 +7,7 @@ Game = {
         this.currentLevel = 1;
         this.tweenDuration = 6000;
         this.creationInterval = 800;
-        this.hearts = 300;
+        this.hearts = 3;
 
         this.brokenSquares = 0;
         this.squares = [];

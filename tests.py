@@ -6,19 +6,24 @@ from selenium.webdriver.common.action_chains import ActionChains
 
 
 class DedosRapidosTests(unittest.TestCase):
+
+    url = 'http://localhost:9001'
+
     def setUp(self):
         self.browser = webdriver.Chrome()
         self.browser.maximize_window()
     
     def test_start_button_exists(self):
-        self.browser.get('http://localhost:8080')
+        self.browser.get(self.url)
         el = self.browser.find_element_by_tag_name('button')
         sleep(1)
         self.assertIn('Start', el.text)
+        el = self.browser.find_element_by_css_selector('#by')
+        self.assertIn('by l31rb4g e RojuebS', el.text)
         self.browser.quit()
 
-    def test_game_3_or_more_bombs(self):
-        self.browser.get('http://localhost:8080')
+    def test_game_has_3_or_more_bombs(self):
+        self.browser.get(self.url)
         el = self.browser.find_element_by_tag_name('button')
         sleep(1)
         el.click()
@@ -28,7 +33,7 @@ class DedosRapidosTests(unittest.TestCase):
         self.browser.quit()
 
     def test_score(self):
-        self.browser.get('http://localhost:8080')
+        self.browser.get(self.url)
         el = self.browser.find_element_by_tag_name('button')
         sleep(1)
         el.click()
